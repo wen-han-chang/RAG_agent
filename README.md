@@ -1,46 +1,41 @@
-## README.md
+# RAG Agent（Elderly Care Chatbot）
 
-```md
-# RAG Agent (Elderly Care Chatbot)
+這是一個基於 **RAG（Retrieval-Augmented Generation）** 的聊天代理系統，  
+專為 **年長者陪伴、健康提醒、長期記憶管理** 所設計。
 
-這是一個基於 RAG（Retrieval-Augmented Generation）的聊天代理，
-專為「年長者陪伴、健康提醒、長期記憶」設計。
-
-後端使用 Python + Flask，可由 Node.js / Web / App 透過 HTTP 呼叫。
+後端以 **Python + Flask** 實作，可由 **Node.js / Web / App** 透過 HTTP 呼叫。
 
 ---
 
 ## 功能特色
 
-- ✅ 溫暖陪伴式對話（自動稱呼名字）
-- ✅ Pinecone 長期記憶（興趣、習慣）
-- ✅ 吃藥提醒（5 分鐘一次，吃過即停止）
-- ✅ 跨裝置使用（Node.js / Web / App）
+- ✅ **溫暖陪伴式對話**（可自動稱呼使用者名字）  
+- ✅ **Pinecone 長期記憶**（記錄興趣、習慣、偏好）  
+- ✅ **吃藥提醒系統**（每 5 分鐘提醒一次，確認吃藥後自動停止）  
+- ✅ **跨裝置整合**（Node.js / Web / App 均可使用）
 
 ---
 
 ## 專案結構
 
-````
-
+```
 app/
 ├── agent.py        # 核心對話邏輯
-├── memory_store.py # Pinecone 記憶
-├── state_store.py  # SQLite 吃藥狀態
+├── memory_store.py # Pinecone 記憶管理
+├── state_store.py  # SQLite 吃藥狀態儲存
 ├── reminder.py     # 提醒邏輯
-├── server.py       # Flask API
-├── chat_cli.py     # CLI 測試
-└── clients.py      # OpenAI / Pinecone
-
-````
+├── server.py       # Flask API 入口
+├── chat_cli.py     # CLI 測試工具
+└── clients.py      # OpenAI / Pinecone 客戶端
+```
 
 ---
 
 ## 環境需求
 
-- Python >= 3.10
-- Pinecone 帳號
-- OpenAI API Key
+- Python >= 3.10  
+- Pinecone 帳號  
+- OpenAI API Key  
 
 ---
 
@@ -48,7 +43,7 @@ app/
 
 ```bash
 pip install -r requirements.txt
-````
+```
 
 ---
 
@@ -120,7 +115,7 @@ console.log(res.data.reply);
 
 ## 注意事項
 
-* Flask 為開發伺服器，正式環境請使用 gunicorn / uvicorn
-* Pinecone namespace 會依 user_id 分隔
-* 使用者中斷後仍可保留長期記憶
+- Flask 為開發用伺服器，正式環境請使用 **gunicorn / uvicorn**  
+- Pinecone namespace 會依 `user_id` 自動分隔  
+- 使用者中斷後，長期記憶仍會保留  
 
