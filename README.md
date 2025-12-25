@@ -19,14 +19,27 @@
 ## 專案結構
 
 ```
-app/
-├── agent.py        # 核心對話邏輯
-├── memory_store.py # Pinecone 記憶管理
-├── state_store.py  # SQLite 吃藥狀態儲存
-├── reminder.py     # 提醒邏輯
-├── server.py       # Flask API 入口
-├── chat_cli.py     # CLI 測試工具
-└── clients.py      # OpenAI / Pinecone 客戶端
+
+RAG_AGENT/
+├── app/
+│   ├── __init__.py        # Python package 宣告
+│   ├── agent.py           # 核心 RAG Agent（對話流程主控）
+│   ├── chat_cli.py        # CLI 測試工具（不經 HTTP，直接測 agent）
+│   ├── clients.py         # OpenAI / Pinecone client 初始化
+│   ├── config.py          # 讀取 .env、集中管理設定
+│   ├── memory_store.py    # 長期記憶（Pinecone 向量儲存 / 查詢）
+│   ├── reminder.py        # 吃藥提醒邏輯（時間判斷、停止條件）
+│   ├── state_store.py     # 提醒狀態管理（是否已提醒 / 是否已吃藥）
+│   ├── server.py          # Flask API Server 入口
+│   └── __pycache__/       # Python 快取（不應提交）
+│
+├── script/                # 輔助腳本（測試 / 資料初始化等）
+│
+├── .env                   # 私密設定
+├── requirements.txt       # Python 套件清單
+└── readme.md              # 專案說明文件
+
+
 ```
 
 ---
