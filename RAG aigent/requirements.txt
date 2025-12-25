@@ -1,0 +1,5 @@
+flask>=2.3
+flask-cors
+python-dotenv
+openai>=1.0.0
+pinecone>=3.0.0
